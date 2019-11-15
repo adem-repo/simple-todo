@@ -10,6 +10,8 @@ const icon = props => {
 	
 	let clickHandler = event => {
 		event.stopPropagation();
+		if (props.disabled)
+			return;
 		props.clicked && props.clicked(event);
 	};
 	

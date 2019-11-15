@@ -17,6 +17,7 @@ const todoContainer = props => {
 				todoItem={todo}
 				clicked={props.done}
 				deleteTodo={props.deleteTodo}
+				editTodo={text => props.editTodo(text, idx)}
 				onDragStart={event => props.onDragStart(event, idx)}
 				onDragOver={() => props.onDragOver(idx)}
 				onDragEnd={() => props.onDragEnd(idx)}

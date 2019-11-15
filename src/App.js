@@ -56,6 +56,14 @@ class App extends Component {
 		this.setState({todos})
 	};
 	
+	editTodoHandler = (text, index) => {
+		const todos = [...this.state.todos];
+		const editedTodo = {...todos[index]};
+		editedTodo.text = text;
+		todos[index] = editedTodo;
+		this.setState({todos});
+	};
+	
 	onDragStart = (e, index) => {
 		this.draggedItem = this.state.todos[index];
 		e.dataTransfer.effectAllowed = "move";
@@ -98,6 +106,7 @@ class App extends Component {
 					undone={this.todoChangeHandler}
 					addTodo={this.addTodoHandler}
 					deleteTodo={this.deleteTodoHandler}
+					editTodo={this.editTodoHandler}
 					onDragStart={this.onDragStart}
 					onDragOver={this.onDragOver}
 					onDragEnd={this.onDragEnd}
