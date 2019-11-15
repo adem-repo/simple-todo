@@ -1,0 +1,30 @@
+.todo-item hr {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    margin: 0;
+}
+
+.todo-item.todo-item-done {
+    opacity: 40%;
+}
+
+.todo-item-draggable {
+    opacity: 0.2;
+}
+
+.todo-item .check-icon {
+    background-image: url("https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-128.png");
+}
+
+.todo-item.todo-item-done .check-icon {
+    background-image: url("https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-128.png");
+}
+
+.move-icon {
+    margin-left: auto;
+}
+
+.edit-icon {
+    background-image: url("https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-128.png");
+}

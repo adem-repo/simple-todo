@@ -1,0 +1,18 @@
+.icon {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 46px;
+    height: 46px;
+    margin: 7px;
+    line-height: 36pt;
+    font-size: 40pt;
+    cursor: pointer;
+}
+
+.icon.icon-shift-left {
+    margin-left: auto !important;
+}
+
+.icon.disabled {
+    opacity: 0.5;
+}

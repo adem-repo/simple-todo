@@ -1,0 +1,49 @@
+.add-todo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    height: 60px;
+    border: 1px solid black;
+    margin: 16px 0;
+    box-sizing: border-box;
+    line-height: 40pt;
+    font-size: 35pt;
+    cursor: pointer;
+}
+
+.add-todo .input {
+    height: 100%;
+    width: 100%;
+    font-size: 20pt;
+    display: flex;
+}
+.add-todo .input input {
+    height: 100%;
+    width: 80%;
+    padding: 7px;
+    box-sizing: border-box;
+    border: none;
+    font-size: inherit;
+}
+
+.add-todo .input input:focus {
+    outline: none;
+}
+
+.add-todo .input .icon {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 46px;
+    height: 46px;
+    margin: 7px;
+}
+
+.add-todo .input .icon.input-accept {
+    margin-left: auto;
+    background-image: url("https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkround-24-128.png");
+}
+
+.add-todo .input .icon.input-decline {
+    background-image: url("https://cdn0.iconfinder.com/data/icons/very-basic-android-l-lollipop-icon-pack/24/close-128.png");
+}
