@@ -21,7 +21,7 @@
 .edit-todo .input input {
     height: 100%;
     width: 80%;
-    padding: 7px;
+    padding: 7px 7px 7px 18px;
     box-sizing: border-box;
     border: none;
     font-size: inherit;
