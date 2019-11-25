@@ -37,24 +37,23 @@ class TodoItem extends Component {
 		if (this.props.todoItem.draggable) {
 			classNames.push('todo-item-draggable')
 		}
-		
+
 		const todoInsides = (
 			<Fragment>
 				<Icon clicked={() => this.props.clicked(this.props.todoItem.id)}>
-					check_box_outline_blank
+					{this.props.todoItem.done ? 'check_box' : 'check_box_outline_blank'}
 				</Icon>
 				<span>{this.props.todoItem.text}</span>
 				<Icon
 					style={{marginLeft: 'auto'}}
 					onDragStart={this.props.onDragStart}
-					disabled={this.props.todoItem.done}
+					// disabled={this.props.todoItem.done}
 				>drag_indicator</Icon>
 				<Icon
 					clicked={this.editTodoHandler}
 					disabled={this.props.todoItem.done}
 				>edit</Icon>
 				<Icon clicked={() => this.props.deleteTodo(this.props.todoItem.id)}>delete</Icon>
-				{this.props.todoItem.done && <hr onClick={event => event.stopPropagation()}/>}
 			</Fragment>
 		);
 		
