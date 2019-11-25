@@ -1,8 +1,19 @@
+.todo-item {
+    cursor: pointer;
+}
+
 .todo-item hr {
     position: absolute;
     top: 50%;
     width: 100%;
     margin: 0;
+}
+
+.todo-item span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    flex: 1 0 200px;
 }
 
 .todo-item.todo-item-done {

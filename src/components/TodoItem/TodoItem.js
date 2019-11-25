@@ -40,7 +40,9 @@ class TodoItem extends Component {
 		
 		const todoInsides = (
 			<Fragment>
-				<Icon className="check-icon" clicked={() => this.props.clicked(this.props.todoItem.id)}/>
+				<Icon clicked={() => this.props.clicked(this.props.todoItem.id)}>
+					check_box_outline_blank
+				</Icon>
 				<span>{this.props.todoItem.text}</span>
 				<Icon
 					style={{marginLeft: 'auto'}}

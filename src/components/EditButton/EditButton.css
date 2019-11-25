@@ -16,6 +16,7 @@
     width: 100%;
     font-size: 20pt;
     display: flex;
+    border-radius: 5px;
 }
 .edit-todo .input input {
     height: 100%;
@@ -29,20 +30,6 @@
 .edit-todo .input input:focus {
     outline: none;
 }
-
-.edit-todo .input .icon {
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 46px;
-    height: 46px;
-    margin: 7px;
-}
-
 .edit-todo .input .icon.input-accept {
     margin-left: auto;
-    background-image: url("https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkround-24-128.png");
-}
-
-.edit-todo .input .icon.input-decline {
-    background-image: url("https://cdn0.iconfinder.com/data/icons/very-basic-android-l-lollipop-icon-pack/24/close-128.png");
 }

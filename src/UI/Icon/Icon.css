@@ -1,12 +1,10 @@
 .icon {
+    margin: 12px;
     background-repeat: no-repeat;
-    background-size: 100%;
-    width: 46px;
-    height: 46px;
-    margin: 7px;
-    line-height: 36pt;
-    font-size: 40pt;
+    line-height: 27pt;
+    font-size: 27pt;
     cursor: pointer;
+    color: #6a6a6a;
 }
 
 .icon.icon-shift-left {
