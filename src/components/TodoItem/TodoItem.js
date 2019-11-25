@@ -13,17 +13,17 @@ class TodoItem extends Component {
 		editMode: false
 	};
 	
-	editTodoHandler = () => {
+	switchToEditModeHandler = () => {
 		this.setState({editMode: true});
 	};
 	
-	onEditText = (text) => {
+	editTextHandler = (text) => {
 		this.setState({text, editMode: false});
 		this.props.editTodo(text);
 		
 	};
 	
-	onCancelEditText = () => {
+	cancelEditTextHandler = () => {
 		this.setState({editMode: false})
 	};
 	
@@ -40,20 +40,22 @@ class TodoItem extends Component {
 
 		const todoInsides = (
 			<Fragment>
-				<Icon clicked={() => this.props.clicked(this.props.todoItem.id)}>
+				<Icon
+					onClick={() => this.props.clicked(this.props.todoItem.id)}
+				>
 					{this.props.todoItem.done ? 'check_box' : 'check_box_outline_blank'}
 				</Icon>
 				<span>{this.props.todoItem.text}</span>
 				<Icon
 					style={{marginLeft: 'auto'}}
 					onDragStart={this.props.onDragStart}
-					// disabled={this.props.todoItem.done}
+					draggable={true}
 				>drag_indicator</Icon>
 				<Icon
-					clicked={this.editTodoHandler}
+					onClick={this.switchToEditModeHandler}
 					disabled={this.props.todoItem.done}
 				>edit</Icon>
-				<Icon clicked={() => this.props.deleteTodo(this.props.todoItem.id)}>delete</Icon>
+				<Icon onClick={() => this.props.deleteTodo(this.props.todoItem.id)}>delete</Icon>
 			</Fragment>
 		);
 		
@@ -69,13 +71,12 @@ class TodoItem extends Component {
 					this.state.editMode ?
 					<EditButton
 						text={this.state.text}
-						confirmEditButton={this.onEditText}
-						declineEditButton={this.onCancelEditText}/> :
+						confirmEditButton={this.editTextHandler}
+						declineEditButton={this.cancelEditTextHandler}/> :
 					todoInsides
 				}
 			</ListElement>
 		);
-		
 	}
 }
 

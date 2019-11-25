@@ -57,12 +57,12 @@ class EditButton extends Component {
 					/>
 					<Icon
 						className='icon-shift-left'
-						clicked={this.addTodoHandler}
+						onClick={this.addTodoHandler}
 						disabled={!this.state.text}
 					>
 						check_circle_outline
 					</Icon>
-					<Icon clicked={this.inputDeclineHandler}>highlight_off</Icon>
+					<Icon onClick={this.inputDeclineHandler}>highlight_off</Icon>
 				</div>
 			</div>
 		);

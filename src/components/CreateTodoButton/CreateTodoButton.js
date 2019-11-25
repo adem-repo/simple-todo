@@ -57,7 +57,7 @@ class CreateTodoButton extends Component {
 					<EditButton
 						confirmEditButton={this.addTodoHandler}
 						declineEditButton={this.inputDeclineHandler}/> :
-					<Icon clicked={this.changeModeHandler}>add_circle_outline</Icon>
+					<Icon onClick={this.changeModeHandler}>add_circle_outline</Icon>
 				}
 			</ListElement>
 		);

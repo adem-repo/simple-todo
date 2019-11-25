@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 
 import TodoContainer from './components/TodoContainer/TodoContainer.js';
+import TodoItem from "./components/TodoItem/TodoItem";
 
 class App extends Component {
 	
@@ -94,6 +95,25 @@ class App extends Component {
 	};
 	
 	render() {
+
+		let doneTodos = [],
+			undoneTodos = [];
+
+		this.state.todos.forEach( (todo, idx) => {
+			const todoElement = (
+				<TodoItem
+					key={todo.id}
+					todoItem={todo}
+					clicked={this.todoChangeHandler}
+					deleteTodo={this.deleteTodoHandler}
+					editTodo={text => this.editTodoHandler(text, idx)}
+					onDragStart={event => this.onDragStart(event, idx)}
+					onDragOver={() => this.onDragOver(idx)}
+					onDragEnd={() => this.onDragEnd(idx)}
+				/>
+			);
+			todo.done ? doneTodos.push(todoElement) : undoneTodos.push(todoElement);
+		});
 		
 		return (
 			<div className="App">
@@ -101,15 +121,9 @@ class App extends Component {
 					<span>Simple TODO</span>
 				</header>
 				<TodoContainer
-					todos={this.state.todos}
-					done={this.todoChangeHandler}
-					undone={this.todoChangeHandler}
 					addTodo={this.addTodoHandler}
-					deleteTodo={this.deleteTodoHandler}
-					editTodo={this.editTodoHandler}
-					onDragStart={this.onDragStart}
-					onDragOver={this.onDragOver}
-					onDragEnd={this.onDragEnd}
+					doneTodos={doneTodos}
+					undoneTodos={undoneTodos}
 				/>
 			</div>
 		)

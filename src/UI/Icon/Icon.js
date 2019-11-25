@@ -5,23 +5,22 @@ import './Icon.css';
 const icon = props => {
 	
 	const classNames = ['icon', 'material-icons', props.className];
+
 	if (props.disabled)
 		classNames.push('disabled');
-	
+
 	let clickHandler = event => {
 		event.stopPropagation();
 		if (props.disabled)
 			return;
-		props.clicked && props.clicked(event);
+		props.onClick && props.onClick(event);
 	};
 	
 	return (
 		<i
-			className={classNames.join(' ')}
+			{...props}
 			onClick={clickHandler}
-			style={props.style}
-			onDragStart={props.onDragStart}
-			draggable
+			className={classNames.join(' ')}
 		>
 			{props.children}
 		</i>
