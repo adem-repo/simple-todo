@@ -1,19 +1,20 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
+
+.app {
     max-width: 600px;
     min-width: 438px;
     margin: 0 auto;
     padding: 0 16px;
+    user-select: none;
 }
 
-.App-header {
+.header {
+    font-family: 'Alata', sans-serif;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-
-    min-height: 60px;
-    margin-bottom: 20px;
-
-    font-size: calc(10px + 2vmin);
-    border-bottom: 1px solid black;
+    height: 60px;
+    margin-bottom: 16px;
+    font-size: 20pt;
+    line-height: 20pt;
+    border-bottom: 1px solid #999999;
+    align-items: center;
 }

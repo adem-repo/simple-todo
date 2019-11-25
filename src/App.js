@@ -3,11 +3,14 @@ import './App.css';
 
 import TodoContainer from './components/TodoContainer/TodoContainer.js';
 import TodoItem from "./components/TodoItem/TodoItem";
+import Icon from '../src/UI/Icon/Icon';
 
 class App extends Component {
-	
-	state = {
-		todos: [
+
+	constructor(props) {
+		super(props);
+
+		const todos = [
 			{
 				id: 'sdf',
 				text: 'Bananas',
@@ -32,7 +35,23 @@ class App extends Component {
 				done: false,
 				draggable: false
 			},
-		]
+		];
+
+		this.state = {
+			todos,
+			prevTodosStates: [
+				todos
+			],
+			currentStateIndex: 0
+		}
+	}
+
+	updateState = ({todos}) => {
+		const prevTodosStates = [...this.state.prevTodosStates];
+		const currentStateIndex = this.state.currentStateIndex + 1;
+		const slicedPrevTodosStates = prevTodosStates.slice(0, currentStateIndex);
+		slicedPrevTodosStates.push(todos);
+		this.setState({todos, prevTodosStates: slicedPrevTodosStates, currentStateIndex});
 	};
 	
 	todoChangeHandler = (id) => {
@@ -41,20 +60,20 @@ class App extends Component {
 		let todos = [...this.state.todos];
 		todo.done = !todo.done;
 		todos[todoIndex] = todo;
-		this.setState({todos});
+		this.updateState({todos});
 	};
 	
 	addTodoHandler = (newTodo) => {
 		const todos = [...this.state.todos];
 		todos.push(newTodo);
-		this.setState({todos});
+		this.updateState({todos});
 	};
 	
 	deleteTodoHandler = (id) => {
 		const todos = [...this.state.todos];
 		const deleteTodoIndex = todos.findIndex( todo => todo.id === id);
 		todos.splice(deleteTodoIndex, 1);
-		this.setState({todos})
+		this.updateState({todos});
 	};
 	
 	editTodoHandler = (text, index) => {
@@ -62,7 +81,7 @@ class App extends Component {
 		const editedTodo = {...todos[index]};
 		editedTodo.text = text;
 		todos[index] = editedTodo;
-		this.setState({todos});
+		this.updateState({todos});
 	};
 	
 	onDragStart = (e, index) => {
@@ -85,7 +104,7 @@ class App extends Component {
 
 		let items = this.state.todos.filter(item => item !== this.draggedItem);
 		items.splice(index, 0, this.draggedItem);
-		this.setState({ todos: items });
+		this.updateState({ todos: items });
 	};
 	
 	onDragEnd = (index) => {
@@ -93,7 +112,36 @@ class App extends Component {
 		todos[index].draggable = false;
 		this.setState({todos});
 	};
-	
+
+	undoHandler = () => {
+		const { currentStateIndex, prevTodosStates } = this.state;
+
+		if (currentStateIndex === 0)
+			return;
+
+		const newCurrentStateIndex = currentStateIndex - 1;
+
+		this.setState({
+			todos: prevTodosStates[newCurrentStateIndex],
+			currentStateIndex: newCurrentStateIndex
+		})
+	};
+
+	redoHandler = () => {
+		const { currentStateIndex, prevTodosStates } = this.state;
+
+		if (prevTodosStates.length - 1 === currentStateIndex)
+			return;
+
+		const newCurrentStateIndex = currentStateIndex + 1;
+
+		this.setState({
+			todos: prevTodosStates[newCurrentStateIndex],
+			currentStateIndex: newCurrentStateIndex
+		});
+
+	};
+
 	render() {
 
 		let doneTodos = [],
@@ -116,9 +164,18 @@ class App extends Component {
 		});
 		
 		return (
-			<div className="App">
-				<header className="App-header">
+			<div className="app">
+				<header className="header">
 					<span>Simple TODO</span>
+					<Icon
+						style={{marginLeft: 'auto'}}
+						onClick={this.undoHandler}
+						disabled={this.state.currentStateIndex === 0}
+					>undo</Icon>
+					<Icon
+						onClick={this.redoHandler}
+						disabled={this.state.prevTodosStates.length - 1 === this.state.currentStateIndex}
+					>redo</Icon>
 				</header>
 				<TodoContainer
 					addTodo={this.addTodoHandler}

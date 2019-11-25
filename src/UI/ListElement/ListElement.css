@@ -1,5 +1,6 @@
 .list-item {
     display: flex;
+    align-items: center;
     position: relative;
     height: 60px;
     border: 1px solid #c5c5c5;
@@ -11,4 +12,5 @@
     user-select: none;
     border-radius: 5px;
     box-shadow: 2px 2px 3px -1px #c5c5c5;
+    background-color: #fafafa;
 }
