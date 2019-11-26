@@ -47,7 +47,7 @@ class TodoItem extends Component {
 				</Icon>
 				<span>{this.props.todoItem.text}</span>
 				<Icon
-					style={{marginLeft: 'auto'}}
+					style={{marginLeft: 'auto', cursor: 'move'}}
 					onDragStart={this.props.onDragStart}
 					draggable={true}
 				>drag_indicator</Icon>

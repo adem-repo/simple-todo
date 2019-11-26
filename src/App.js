@@ -84,33 +84,43 @@ class App extends Component {
 		this.updateState({todos});
 	};
 	
-	onDragStart = (e, index) => {
+	onDragStart = (event, index) => {
 		this.draggedItem = this.state.todos[index];
-		e.dataTransfer.effectAllowed = "move";
-		e.dataTransfer.setData("text/html", e.target.parentNode);
-		e.dataTransfer.setDragImage(e.target.parentNode, 500, 20);
+
+		if (this.draggedItem.done)
+			return;
+
+		event.dataTransfer.effectAllowed = "move";
+		event.dataTransfer.setData("text/html", event.target.parentNode);
+		event.dataTransfer.setDragImage(event.target.parentNode, 500, 20);
 		
 		const todos = [...this.state.todos];
 		todos[index].draggable = true;
 		this.setState({todos});
 	};
-	
-	onDragOver = index => {
+
+	onDragOver = (event, index) => {
 		const draggedOverItem = this.state.todos[index];
 
-		if (this.draggedItem === draggedOverItem) {
+		if (this.draggedItem.done)
 			return;
-		}
+
+		if (this.draggedItem === draggedOverItem)
+			return;
 
 		let items = this.state.todos.filter(item => item !== this.draggedItem);
 		items.splice(index, 0, this.draggedItem);
-		this.updateState({ todos: items });
+		this.setState({ todos: items });
 	};
 	
 	onDragEnd = (index) => {
+
+		if (this.draggedItem.done)
+			return;
+
 		const todos = [...this.state.todos];
 		todos[index].draggable = false;
-		this.setState({todos});
+		this.updateState({todos});
 	};
 
 	undoHandler = () => {
@@ -156,7 +166,7 @@ class App extends Component {
 					deleteTodo={this.deleteTodoHandler}
 					editTodo={text => this.editTodoHandler(text, idx)}
 					onDragStart={event => this.onDragStart(event, idx)}
-					onDragOver={() => this.onDragOver(idx)}
+					onDragOver={(event) => this.onDragOver(event, idx)}
 					onDragEnd={() => this.onDragEnd(idx)}
 				/>
 			);

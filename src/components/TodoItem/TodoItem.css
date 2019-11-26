@@ -22,6 +22,7 @@
 
 .todo-item-draggable {
     opacity: 0.2;
+    cursor: move;
 }
 
 .todo-item .check-icon {
